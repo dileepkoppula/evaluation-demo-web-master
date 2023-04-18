@@ -1,0 +1,62 @@
+<h1>Hi {{ currentUser.firstName }}!</h1>
+<p>You're logged in with Angular 8!!</p>
+<h3>All login audit :</h3>
+<!-- <ul>
+    <li *ngFor="let audit of audits">
+        <br/><span class="badge badge-primary">{{audit.user}}</span>
+        <br/><span class="badge badge-secondary">{{audit._id}}</span>
+        <br/>Login - {{audit.loginTime}}
+        <br/>Logout - {{audit.logoutTime}}
+        <br/>IP - {{audit.ip}}
+    </li>
+
+</ul> -->
+<input
+  class="form-control"
+  type="text"
+  name="user"
+  [(ngModel)]="user"
+  (ngModelChange)="search()"
+  placeholder="Enter Search text..."
+/><br/>
+<label> Time Format </label>&nbsp;&nbsp;
+<select
+  name="format"
+  id="format"
+  (change)="onChangeFormat($event.target.value)"
+>
+  <option value="">Select Format</option>
+  <option value="12">12 Hr</option>
+  <option value="24">24 Hr</option>
+</select>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th (click)="sort('id')">ID &nbsp;<i class="fa fa-sort"></i></th>
+      <th (click)="sort('user')">User &nbsp;<i class="fa fa-sort"></i></th>
+      <th (click)="sort('loginTime')">
+        Login time &nbsp;<i class="fa fa-sort"></i>
+      </th>
+      <th (click)="sort('logoutTime')">
+        Logout time &nbsp;<i class="fa fa-sort"></i>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let audit of audits | orderBy : key : reverse ">
+        <!-- | paginate:{itemsPerPage:10,currentPage:p} -->
+      <td>{{ audit.id }}</td>
+      <td>{{ audit.user }}</td>
+      <td>
+        {{
+          audit.loginTime
+            | date
+              : (show12HrFormat ? "dd/MM/yyyy hh:mm:ss" : "dd/MM/yyyy H:mm:ss")
+        }}
+      </td>
+      <td>{{ audit.logoutTime | date
+        : (show12HrFormat ? "dd/MM/yyyy hh:mm:ss" : "dd/MM/yyyy H:mm:ss") }}</td>
+    </tr>
+  </tbody>
+</table>
+<!-- <pagination-controls (pageChange)="p=$event"></pagination-controls> -->
