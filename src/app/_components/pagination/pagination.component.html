@@ -1,0 +1,13 @@
+<div *ngFor="let item of audits; let i = index;" (click)="onClick(item)">
+    <span *ngIf="i >= startIndex && i <= endIndex">{{getLabel(i)}}</span>
+  </div>
+  
+  <div *ngIf="pages.length > 1">
+    <a href="" (click)="previous($event)">{{ previousLabel }}</a>
+    <span *ngFor="let page of pages">
+      <span *ngIf="page === currentPage" href="" (click)="setCurrent($event,page)">{{page}}</span>
+      <a *ngIf="page !== currentPage" href="" (click)="setCurrent($event,page)">{{page}}</a>
+    </span>
+    <a href="" (click)="next($event)">{{ nextLabel }}</a>
+  </div>
+  

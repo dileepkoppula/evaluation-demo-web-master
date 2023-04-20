@@ -43,7 +43,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let audit of audits | orderBy : key : reverse | paginate:{itemsPerPage:10,currentPage:p}">
+    <tr *ngFor="let audit of audits | orderBy : key : reverse">
+      <!-- | paginate:{itemsPerPage:10,currentPage:p} -->
         <!--  -->
       <td>{{ audit.id }}</td>
       <td>{{ audit.user }}</td>
@@ -59,4 +60,6 @@
     </tr>
   </tbody>
 </table>
-<pagination-controls (pageChange)="p=$event"></pagination-controls>
+<!-- <pagination-controls (pageChange)="p=$event"></pagination-controls> -->
+<app-pagination [audits]="audits" label="name" (onItemClick)="onChangeItem($event)">
+</app-pagination>

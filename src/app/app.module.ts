@@ -14,7 +14,8 @@ import { AuditComponent } from './audit';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { SearchFilterPipe } from './search-filter.pipe';
-import { NgxPaginationModule } from 'ngx-pagination';
+import { PaginationComponent } from './_components/pagination/pagination.component';
+// import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
     imports: [
         BrowserModule,
@@ -24,8 +25,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
         FormsModule,
         Ng2SearchPipeModule,
         Ng2OrderModule,
-        NgxPaginationModule,
+        // NgxPaginationModule,
     ],
+    
     declarations: [
         AppComponent,
         HomeComponent,
@@ -33,7 +35,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
         RegisterComponent,
         AuditComponent,
         AlertComponent,
-        SearchFilterPipe
+        SearchFilterPipe,
+        PaginationComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

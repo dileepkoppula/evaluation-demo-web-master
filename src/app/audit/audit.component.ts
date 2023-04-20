@@ -8,14 +8,16 @@ import { AuditService, AuthenticationService } from "@/_services";
 export class AuditComponent implements OnInit {
   user: any;
   audits = [];
+  config:any;
   p: number = 1;
   key: string = "id";
   reverse: boolean = false;
   show12HrFormat: boolean = false;
   constructor(
     private authenticationService: AuthenticationService,
-    private auditService: AuditService
+    private auditService: AuditService,
   ) {}
+
 
   ngOnInit() {
     this.loadAllAudits();
@@ -54,5 +56,9 @@ export class AuditComponent implements OnInit {
       this.show12HrFormat=false;
       
     }
+  }
+
+  onChangeItem(value) {
+    console.log(value);
   }
 }
